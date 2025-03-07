@@ -1,7 +1,7 @@
 <?php
 class Contact{
 
-    private int $id;
+    private ?int $id;
     private string $name;
     private string $email;
     private string $phoneNumber;
@@ -10,15 +10,15 @@ class Contact{
         return $this->id;
     }
 
-    public function getName(): ?string{
+    public function getName(): string{
         return $this->name;
     }
 
-    public function getEmail(): ?string{
+    public function getEmail(): string{
         return $this->email;
     }
 
-    public function getPhoneNumber(): ?string{
+    public function getPhoneNumber(): string{
         return $this->phoneNumber;
         
     }

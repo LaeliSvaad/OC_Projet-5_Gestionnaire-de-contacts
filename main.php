@@ -2,7 +2,7 @@
 require_once("config.php");
 require_once("DBConnect.php");
 require_once("ContactManager.php");
-require_once("contact.php");
+require_once("Contact.php");
 
 while (true) {
     $line = readline("Entrez votre commande : ");
