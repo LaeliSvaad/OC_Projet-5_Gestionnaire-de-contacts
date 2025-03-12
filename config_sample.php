@@ -2,10 +2,10 @@
 /*Configuration file for database connexion */
 
 /* The host for databse:  */
-const DB_HOST = '127.0.0.1';
+const DB_HOST = '';
 
 /*The port for database: */ 
-const DB_PORT = ":3306"
+const DB_PORT = '';
 
 /*The database name: */
 const DB_NAME = '';

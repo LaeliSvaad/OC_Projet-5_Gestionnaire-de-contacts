@@ -19,14 +19,30 @@ class ContactManager{
         return $contacts;
     }
 
+    public function findById(int $id): ?Contact{
+        $pdo = DBConnect::getInstance()->getPDO();
+
+        $sql = "SELECT * FROM contact WHERE id = :id";
+        $stmt = $pdo->prepare("id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $contact = $stmt->fetch();
+
+        $currentContact = new Contact();
+        $currentContact->setName($contact["name"]);
+        $currentContact->setEmail($contact["email"]);
+        $currentContact->setPhoneNumber($contact["phone_number"]);
+        return $currentContact;
+    
+    }
+
     public function createContact($contact){
         $pdo = DBConnect::getInstance()->getPDO();
 
         $req = 'INSERT INTO contact (name, email, phone_number) VALUES (:name, :email, :phone_number)';
-        $stmt = $pdo->prepare($req);
-        $stmt->execute(['name' => $contact->name(),
-                        'email' => $contact->email(),
-                        'phone_number' => $contact->phoneNumber()]);
+        foreach($contact as $property => $value){
+            $stmt = $pdo->prepare(":{$propery}", $value, PDO::PARAM_STR);
+        }
+        $stmt->execute();
         return $pdo->lastInsertId();
     }
 

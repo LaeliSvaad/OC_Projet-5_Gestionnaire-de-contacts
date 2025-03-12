@@ -10,17 +10,16 @@ class Contact{
         return $this->id;
     }
 
-    public function getName(): string{
+    public function getName(): ?string{
         return $this->name;
     }
 
-    public function getEmail(): string{
+    public function getEmail(): ?string{
         return $this->email;
     }
 
-    public function getPhoneNumber(): string{
+    public function getPhoneNumber(): ?string{
         return $this->phoneNumber;
-        
     }
 
     public function setId(int $id): void{
