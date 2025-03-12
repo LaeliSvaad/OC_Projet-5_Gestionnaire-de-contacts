@@ -23,35 +23,46 @@ class ContactManager{
         $pdo = DBConnect::getInstance()->getPDO();
 
         $sql = "SELECT * FROM contact WHERE id = :id";
-        $stmt = $pdo->prepare("id", $id, PDO::PARAM_INT);
-        $stmt->execute();
-        $contact = $stmt->fetch();
+        $stmt = $pdo->prepare($sql); 
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT); 
+        $stmt->execute(); 
+        
+        $contact = $stmt->fetch(PDO::FETCH_ASSOC); 
+  
+        if($contact != false){
+            $currentContact = new Contact();
+            $currentContact->setId($contact["id"]);
+            $currentContact->setName($contact["name"]);
+            $currentContact->setEmail($contact["email"]);
+            $currentContact->setPhoneNumber($contact["phone_number"]);
+            return $currentContact;
+        }
+        else{
+            return null;
+        }
 
-        $currentContact = new Contact();
-        $currentContact->setName($contact["name"]);
-        $currentContact->setEmail($contact["email"]);
-        $currentContact->setPhoneNumber($contact["phone_number"]);
-        return $currentContact;
-    
     }
 
-    public function createContact($contact){
+    public function createContact(Contact $contact): int{
         $pdo = DBConnect::getInstance()->getPDO();
 
-        $req = 'INSERT INTO contact (name, email, phone_number) VALUES (:name, :email, :phone_number)';
-        foreach($contact as $property => $value){
-            $stmt = $pdo->prepare(":{$propery}", $value, PDO::PARAM_STR);
+        $req = 'INSERT INTO contact (name, email, phone_number) VALUES (:name, :email, :phoneNumber)';
+        $stmt = $pdo->prepare($req);
+        foreach($contact as $property => &$value){
+            $stmt->bindParam(":{$property}", $value, PDO::PARAM_STR);   
         }
         $stmt->execute();
         return $pdo->lastInsertId();
     }
 
-    public function deleteContact($id){
+    public function deleteContact(int $id): int{
         $pdo = DBConnect::getInstance()->getPDO();
 
         $req = 'DELETE FROM contact WHERE id = :id';
         $stmt = $pdo->prepare($req);
-        $stmt->execute(['id' => $id]);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT); 
+        $stmt->execute();
+        return $stmt->rowCount();
     }
 
 } 

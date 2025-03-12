@@ -5,20 +5,40 @@ class Command{
         $contactManager = New ContactManager();
         $contacts = $contactManager->findAll();
         foreach($contacts as $contact){
-            echo $contact->toString();
+            echo $contact;
         }
     }
 
-    public static function detail(): void{
-        echo "ouiiii!!!!\n";
+    public static function detail($user_command): void{
+        $user_command_array = explode(" ", $user_command);
+        $id = $user_command_array[1];
+        $contactManager = New ContactManager();
+        $contact = $contactManager->findById($id);
+        if($contact == null){
+            echo "Ce contact n'existe pas.\n";
+            return;
+        }
+        echo $contact;
     }
 
-    public static function create(): void{
-        echo "ouiiii!!!!2\n";
+    public static function create($user_command): void{
+        $user_command_params = substr($user_command, 7);
+        $contact_infos = explode(",", $user_command_params);
+        $contact = New Contact();
+        $contactManager = New ContactManager();
+        $contact->setName($contact_infos[0]);
+        $contact->setEmail($contact_infos[1]);
+        $contact->setPhoneNumber($contact_infos[2]);  
+        $contact->setId($contactManager->createContact($contact));     
+        echo $contact;
     }
 
-    public static function delete(): void{
-        echo "ouiiii!!!!3\n";
+    public static function delete($user_command): void{
+        $user_command_array = explode(" ", $user_command);
+        $id = $user_command_array[1];
+        $contactManager = New ContactManager();
+        $result = $contactManager->deleteContact($id);
+        echo $result . " contact supprimé.\n";
     }
 
     public static function help(): void{

@@ -10,13 +10,13 @@ while (true) {
 
     match (true) {
         $line === "list" => Command::list(),
-        preg_match('/^detail [0-9]*$/', $line) === 1 => Command::detail(),
-        $line === "create" => Command::create(),
-        $line === "delete" => Command::delete(),
+        preg_match('/^detail [0-9]+$/', $line) === 1 => Command::detail($line),
+        preg_match('/^create ([A-Za-z ]{1,120},)([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,},)(\+[0-9]{11})$/', $line) === 1=> Command::create($line),
+        preg_match('/^delete [0-9]+$/', $line) === 1 => Command::delete($line),
         $line === "help" => Command::help(),
         default => print("Cette commande n'existe pas.\n")
     };
 }  
 
 
-/* la commande : docker exec -it apache_php php main.php */
+/* la commande : docker exec -it apache_php php main.php */ 

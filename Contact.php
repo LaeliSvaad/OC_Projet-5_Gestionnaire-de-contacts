@@ -2,9 +2,9 @@
 class Contact{
 
     private ?int $id;
-    private string $name;
-    private string $email;
-    private string $phoneNumber;
+    public ?string $name;
+    public ?string $email;
+    public ?string $phoneNumber;
 
     public function getId(): ?int{
         return $this->id;
@@ -22,23 +22,23 @@ class Contact{
         return $this->phoneNumber;
     }
 
-    public function setId(int $id): void{
+    public function setId(?int $id): void{
         $this->id = $id;
     }
 
-    public function setName(string $name): void{
+    public function setName(?string $name): void{
        $this->name = $name;
     }
 
-    public function setEmail(string $email): void{
+    public function setEmail(?string $email): void{
         $this->email = $email;
     }
 
-    public function setPhoneNumber(string $phoneNumber): void{
+    public function setPhoneNumber(?string $phoneNumber): void{
         $this->phoneNumber = $phoneNumber;
     }
 
-    public function toString(): string{
+    public function __toString(): string{
         return "Contact numéro ". $this->id ." : Nom: " . $this->name . ", Adresse email: " . $this->email . ", Numéro de téléphone: " . $this->phoneNumber . "\n"; 
     }
 
