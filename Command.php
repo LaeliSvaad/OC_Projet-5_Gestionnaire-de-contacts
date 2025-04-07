@@ -42,7 +42,7 @@ class Command{
     }
 
     public static function help(): void{
-        echo "ouiiii!!!!4\n";
+        echo file_get_contents("commands_description.txt") . "\n";
     }
     
 }

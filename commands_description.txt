@@ -1,0 +1,6 @@
+list: affiche l'ensemble des contacts présents dans la base de données
+detail [numéro identifiant de contact]: affiche le détail du contact choisi (nom, mail, téléphone)
+modify [numéro identifiant de contact] [nom,mail,téléphone] : modifie le contact choisi dans la base de données
+create [nom,mail,téléphone] : ajoute le contact en base de données
+delete [numéro identifiant de contact]: supprime le contact de la base de données
+help: affiche l'aide
