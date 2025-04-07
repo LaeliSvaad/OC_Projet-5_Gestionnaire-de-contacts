@@ -33,6 +33,19 @@ class Command{
         echo $contact;
     }
 
+    public static function modify($user_command): void{
+        $user_command_params = substr($user_command, 7);
+        $contact_infos = explode(",", $user_command_params);
+        $contact = New Contact();
+        $contactManager = New ContactManager();
+        $contact->setName($contact_infos[1]);
+        $contact->setEmail($contact_infos[2]);
+        $contact->setPhoneNumber($contact_infos[3]);
+        $contact->setId($contact_infos[0]);
+        $result = $contactManager->modifyContact($contact);
+        echo $result . " contact modifié.\n";
+    }
+
     public static function delete($user_command): void{
         $user_command_array = explode(" ", $user_command);
         $id = $user_command_array[1];

@@ -55,6 +55,18 @@ class ContactManager{
         return $pdo->lastInsertId();
     }
 
+    public function modifyContact(Contact $contact): int{
+        $pdo = DBConnect::getInstance()->getPDO();
+
+        $req = 'UPDATE contact SET name = :name, email = :email, phone_number = :phoneNumber WHERE id = :id';
+        $stmt = $pdo->prepare($req);
+        foreach($contact as $property => &$value){
+            $stmt->bindParam(":{$property}", $value, PDO::PARAM_STR);
+        }
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
+
     public function deleteContact(int $id): int{
         $pdo = DBConnect::getInstance()->getPDO();
 
