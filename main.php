@@ -15,6 +15,7 @@ while (true) {
         preg_match('/^delete [0-9]+$/', $line) === 1 => Command::delete($line),
         preg_match('/^modify ([0-9]+,)([A-Za-z ]{1,120},)([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,},)(\+[0-9]{11})$/', $line) === 1 => Command::modify($line),
         $line === "help" => Command::help(),
+        $line === "exit" => Command::exitProgram(),
         default => print("Cette commande n'existe pas.\n")
     };
 }

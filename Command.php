@@ -57,5 +57,9 @@ class Command{
     public static function help(): void{
         echo file_get_contents("commands_description.txt") . "\n";
     }
+
+    public static function exitProgram(): void{
+        exit();
+    }
     
 }

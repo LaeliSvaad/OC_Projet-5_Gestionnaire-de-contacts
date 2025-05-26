@@ -4,3 +4,4 @@ modify [numéro identifiant de contact,nom,mail,téléphone] : modifie le contac
 create [nom,mail,téléphone] : ajoute le contact en base de données
 delete [numéro identifiant de contact]: supprime le contact de la base de données
 help: affiche l'aide
+exit: quitte le programme
