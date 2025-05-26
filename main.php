@@ -18,4 +18,3 @@ while (true) {
         default => print("Cette commande n'existe pas.\n")
     };
 }
-/* la commande : docker exec -it apache_php php main.php */ 
