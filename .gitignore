@@ -1,4 +1,4 @@
-Dockerfile
-docker-compose.yaml
+../OC_Projet-5_PHP-blog-emilie-forteroche/Dockerfile
+../OC_Projet-5_PHP-blog-emilie-forteroche/docker-compose.yaml
 config.php
 .idea

@@ -1,0 +1,1 @@
+Avec Docker, si la commande php ne fonctionne pas, utiliser: docker exec -it apache_php php main.php
